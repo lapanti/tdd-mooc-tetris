@@ -22,4 +22,11 @@ export class Board {
 ...
 `;
   }
+
+  tick() {
+    this.board = `...
+.X.
+...
+`
+  }
 }
