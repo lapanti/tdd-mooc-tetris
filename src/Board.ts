@@ -23,6 +23,10 @@ export class Board {
   }
 
   drop(block: string) {
+    if (this.blocks.length > 0) {
+      throw new Error("already falling");
+    }
+
     this.blocks = this.blocks.concat({ character: block, column: Math.floor(this.width / 2), row: 0 });
   }
 
