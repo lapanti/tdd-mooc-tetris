@@ -1,32 +1,32 @@
 export class Board {
   width: number;
   height: number;
-  board: string;
+  blocks: { column: number; row: number; character: string }[];
 
   constructor(width: number, height: number) {
     this.width = width;
     this.height = height;
-    this.board = `...
-...
-...
-`;
+    this.blocks = [];
   }
 
   toString() {
-    return this.board;
+    const board: string[][] = Array.from(Array(this.height), () => Array(this.width).fill("."));
+
+    this.blocks.forEach((block) => {
+      board[block.row][block.column] = block.character;
+    });
+
+    return board
+      .map((row) => row.join(""))
+      .join("\n")
+      .concat("\n");
   }
 
   drop(block: string) {
-    this.board = `.${block}.
-...
-...
-`;
+    this.blocks = this.blocks.concat({ character: block, column: Math.floor(this.width / 2), row: 0 });
   }
 
   tick() {
-    this.board = `...
-.X.
-...
-`
+    this.blocks = this.blocks.map((block) => ({ ...block, row: block.row + 1 }));
   }
 }
