@@ -27,6 +27,10 @@ class MovableShape implements Shape {
     this.#row = row
     this.#col = col
   }
+
+  moveDown() {
+    return new MovableShape(this.#shape, this.#row + 1, this.#col)
+  }
 }
 
 export class Board {
