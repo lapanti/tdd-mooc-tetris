@@ -10,6 +10,13 @@ class Point {
   }
 }
 
+interface Shape {
+  width(): number
+  height(): number
+
+  blockAt(row: number, col: number): string | undefined
+}
+
 export class Board {
   width: number;
   height: number;
