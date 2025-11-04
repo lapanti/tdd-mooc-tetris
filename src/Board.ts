@@ -66,18 +66,18 @@ class MovableShape implements Shape {
 }
 
 export class Board {
-  width: number;
-  height: number;
+  #width: number;
+  #height: number;
   blocks: { column: number; row: number; character: string }[];
 
   constructor(width: number, height: number) {
-    this.width = width;
-    this.height = height;
+    this.#width = width;
+    this.#height = height;
     this.blocks = [];
   }
 
   toString() {
-    const board: string[][] = Array.from(Array(this.height), () => Array(this.width).fill(EMPTY));
+    const board: string[][] = Array.from(Array(this.#height), () => Array(this.#width).fill(EMPTY));
 
     this.blocks.forEach((block) => {
       board[block.row][block.column] = block.character;
@@ -94,7 +94,7 @@ export class Board {
       throw new Error("already falling");
     }
 
-    this.blocks = this.blocks.concat({ character: block, column: Math.floor(this.width / 2), row: 0 });
+    this.blocks = this.blocks.concat({ character: block, column: Math.floor(this.#width / 2), row: 0 });
   }
 
   tick() {
