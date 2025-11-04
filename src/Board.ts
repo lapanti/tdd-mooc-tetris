@@ -17,6 +17,18 @@ interface Shape {
   blockAt(row: number, col: number): string | undefined
 }
 
+class MovableShape implements Shape {
+  #shape: Shape
+  #row: number
+  #col: number
+
+  constructor(shape: Shape, row: number, col: number) {
+    this.#shape = shape
+    this.#row = row
+    this.#col = col
+  }
+}
+
 export class Board {
   width: number;
   height: number;
