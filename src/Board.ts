@@ -1,5 +1,15 @@
 const EMPTY = '.'
 
+class Point {
+  row: number;
+  col: number;
+
+  constructor(row: number, col: number) {
+    this.row = row
+    this.col = col
+  }
+}
+
 export class Board {
   width: number;
   height: number;
