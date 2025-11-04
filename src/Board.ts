@@ -31,6 +31,25 @@ class MovableShape implements Shape {
   moveDown() {
     return new MovableShape(this.#shape, this.#row + 1, this.#col)
   }
+
+  blockAt(row: number, col: number) {
+    if (
+      row >= this.#row && row < this.height() &&
+      col >= this.#col && col < this.width()
+    ) {
+      return this.#shape.blockAt(row - this.#row, col - this.#col);
+    } else {
+      return EMPTY;
+    }
+  }
+
+  height() {
+    return this.#row + this.#shape.height();
+  }
+
+  width() {
+    return this.#col + this.#shape.width();
+  }
 }
 
 export class Board {
