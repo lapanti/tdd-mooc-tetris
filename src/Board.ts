@@ -1,3 +1,5 @@
+const EMPTY = '.'
+
 export class Board {
   width: number;
   height: number;
@@ -10,7 +12,7 @@ export class Board {
   }
 
   toString() {
-    const board: string[][] = Array.from(Array(this.height), () => Array(this.width).fill("."));
+    const board: string[][] = Array.from(Array(this.height), () => Array(this.width).fill(EMPTY));
 
     this.blocks.forEach((block) => {
       board[block.row][block.column] = block.character;
