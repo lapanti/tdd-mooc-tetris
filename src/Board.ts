@@ -32,6 +32,19 @@ class MovableShape implements Shape {
     return new MovableShape(this.#shape, this.#row + 1, this.#col)
   }
 
+  nonEmptyPoints() {
+    const points = [];
+    for (let row = this.#row; row < this.height(); row++) {
+      for (let col = this.#col; col < this.width(); col++) {
+        const block = this.blockAt(row, col);
+        if (block !== EMPTY) {
+          points.push(new Point(row, col));
+        }
+      }
+    }
+    return points;
+  }
+
   blockAt(row: number, col: number) {
     if (
       row >= this.#row && row < this.height() &&
