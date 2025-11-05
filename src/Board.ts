@@ -75,6 +75,10 @@ export class Board {
   constructor(width: number, height: number) {
     this.#width = width;
     this.#height = height;
+    this.#immobile = new Array(height)
+    for (let row = 0; row < this.#immobile.length; row++) {
+      this.#immobile[row] = Array.from(EMPTY.repeat(width))
+    }
     this.blocks = [];
   }
 
