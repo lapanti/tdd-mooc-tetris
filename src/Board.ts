@@ -84,6 +84,10 @@ export class Board {
     return shapeToString(this)
   }
 
+  hasFalling() {
+    return true
+  }
+
   width() {
     return this.#width;
   }
