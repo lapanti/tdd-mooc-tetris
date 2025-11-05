@@ -30,17 +30,12 @@ class MovableShape implements Shape {
     return new MovableShape(this.#shape, this.#row + 1, this.#col)
   }
 
-  nonEmptyPoints() {
-    const points = [];
-    for (let row = this.#row; row < this.height(); row++) {
-      for (let col = this.#col; col < this.width(); col++) {
-        const block = this.blockAt(row, col);
-        if (block !== EMPTY) {
-          points.push(new Point(row, col));
-        }
-      }
-    }
-    return points;
+  height() {
+    return this.#row + this.#shape.height();
+  }
+
+  width() {
+    return this.#col + this.#shape.width();
   }
 
   blockAt(row: number, col: number) {
@@ -54,12 +49,17 @@ class MovableShape implements Shape {
     }
   }
 
-  height() {
-    return this.#row + this.#shape.height();
-  }
-
-  width() {
-    return this.#col + this.#shape.width();
+  nonEmptyPoints() {
+    const points = [];
+    for (let row = this.#row; row < this.height(); row++) {
+      for (let col = this.#col; col < this.width(); col++) {
+        const block = this.blockAt(row, col);
+        if (block !== EMPTY) {
+          points.push(new Point(row, col));
+        }
+      }
+    }
+    return points;
   }
 }
 
