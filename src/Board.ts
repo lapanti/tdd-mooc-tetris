@@ -107,11 +107,23 @@ export class Board {
   }
 
   #hitsFloor(falling: MovableShape) {
-    return falling.nonEmptyPoints().some((point) => point.row >= this.height())
+    for (const point of falling.nonEmptyPoints()) {
+      if (point.row >= this.height()) {
+        return true
+      }
+    }
+
+    return false
   }
 
   #hitsImmobile(falling: MovableShape) {
-    return falling.nonEmptyPoints().some((point) => this.#immobile[point.row][point.col] !== EMPTY)
+    for (const point of falling.nonEmptyPoints()) {
+      if (this.#immobile[point.row][point.col] !== EMPTY) {
+        return true
+      }
+    }
+
+    return false
   }
 
   blockAt(row: number, col: number) {
