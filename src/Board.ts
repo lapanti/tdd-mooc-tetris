@@ -68,6 +68,8 @@ class MovableShape implements Shape {
 export class Board {
   #width: number;
   #height: number;
+  #falling: MovableShape | null = null;
+  #immobile: string[][];
   blocks: { column: number; row: number; character: string }[];
 
   constructor(width: number, height: number) {
