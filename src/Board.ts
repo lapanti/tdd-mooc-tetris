@@ -1,3 +1,4 @@
+import { Block } from './Block';
 import { Shape, shapeToString } from './Shape'
 
 const EMPTY = '.'
@@ -80,27 +81,67 @@ export class Board {
   }
 
   toString() {
-    const board: string[][] = Array.from(Array(this.#height), () => Array(this.#width).fill(EMPTY));
+    return shapeToString(this)
+  }
 
-    this.blocks.forEach((block) => {
-      board[block.row][block.column] = block.character;
-    });
+  width() {
+    return this.#width;
+  }
 
-    return board
-      .map((row) => row.join(""))
-      .join("\n")
-      .concat("\n");
+  height() {
+    return this.#height;
   }
 
   drop(block: string) {
-    if (this.blocks.length > 0) {
+    const piece = typeof block === 'string' ? new Block(block) : block
+
+    if (this.#falling) {
       throw new Error("already falling");
     }
 
-    this.blocks = this.blocks.concat({ character: block, column: Math.floor(this.#width / 2), row: 0 });
+    this.#falling = new MovableShape(piece, 0, Math.floor((this.width() - piece.width()) / 2))
+  }
+
+  #hitsFloor(falling: MovableShape) {
+    return falling.nonEmptyPoints().some((point) => point.row >= this.height())
+  }
+
+  #hitsImmobile(falling: MovableShape) {
+    return falling.nonEmptyPoints().some((point) => this.#immobile[point.row][point.col] !== EMPTY)
+  }
+
+  blockAt(row: number, col: number) {
+    if (this.#falling) {
+      const block = this.#falling.blockAt(row, col);
+      if (block !== EMPTY) {
+        return block;
+      }
+    }
+
+    return this.#immobile[row][col];
+  }
+
+  #stopFalling() {
+    for (let row = 0; row < this.height(); row++) {
+      for (let col = 0; col < this.width(); col++) {
+        this.#immobile[row][col] = this.blockAt(row, col) as string
+      }
+    }
+
+    this.#falling = null
   }
 
   tick() {
-    this.blocks = this.blocks.map((block) => ({ ...block, row: block.row + 1 }));
+    if (!this.#falling) {
+      return
+    }
+
+    const attempt = this.#falling.moveDown()
+
+    if (this.#hitsFloor(attempt) || this.#hitsImmobile(attempt)) {
+      this.#stopFalling()
+    }
+
+    this.#falling = attempt
   }
 }
