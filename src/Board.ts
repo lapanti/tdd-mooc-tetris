@@ -1,3 +1,5 @@
+import { Shape, shapeToString } from './Shape'
+
 const EMPTY = '.'
 
 class Point {
@@ -10,24 +12,7 @@ class Point {
   }
 }
 
-interface Shape {
-  width(): number
-  height(): number
 
-  blockAt(row: number, col: number): string | undefined
-}
-
-const shapeToString = (shape: Shape): string => {
-  let stringRepresentation = "";
-
-  for (let row = 0; row < shape.height(); row++) {
-    for (let col = 0; col < shape.width(); col++) {
-      stringRepresentation += shape.blockAt(row, col);
-    }
-    stringRepresentation += "\n";
-  }
-  return stringRepresentation;
-}
 
 class MovableShape implements Shape {
   #shape: Shape
