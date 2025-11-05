@@ -74,7 +74,7 @@ export class Board {
     this.#width = width;
     this.#height = height;
     this.#immobile = new Array(height)
-    for (let row = 0; row < this.#immobile.length; row++) {
+    for (let row = 0; row < height; row++) {
       this.#immobile[row] = Array.from(EMPTY.repeat(width))
     }
     this.blocks = [];
@@ -85,7 +85,7 @@ export class Board {
   }
 
   hasFalling() {
-    return true
+    return this.#falling !== null
   }
 
   width() {
@@ -99,7 +99,7 @@ export class Board {
   drop(block: string) {
     const piece = typeof block === 'string' ? new Block(block) : block
 
-    if (this.#falling) {
+    if (this.hasFalling()) {
       throw new Error("already falling");
     }
 
@@ -127,8 +127,8 @@ export class Board {
   }
 
   blockAt(row: number, col: number) {
-    if (this.#falling) {
-      const block = this.#falling.blockAt(row, col);
+    if (this.hasFalling()) {
+      const block = this.#falling!.blockAt(row, col);
       if (block !== EMPTY) {
         return block;
       }
@@ -148,16 +148,14 @@ export class Board {
   }
 
   tick() {
-    if (!this.#falling) {
-      return
+    if (this.hasFalling()) {
+      const attempt = this.#falling!.moveDown()
+
+      if (this.#hitsFloor(attempt) || this.#hitsImmobile(attempt)) {
+        this.#stopFalling()
+      } else {
+        this.#falling = attempt
+      }
     }
-
-    const attempt = this.#falling.moveDown()
-
-    if (this.#hitsFloor(attempt) || this.#hitsImmobile(attempt)) {
-      this.#stopFalling()
-    }
-
-    this.#falling = attempt
   }
 }
