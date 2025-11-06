@@ -30,8 +30,12 @@ export class Tetromino implements Shape {
             ].slice(0, numberOfOrientations)
         } else {
             this.#currentOrientation = currentOrientation
-            this.#orientations = []
+            this.#orientations = orientations as RotatingShape[]
         }
+    }
+
+    rotateRight() {
+        return new Tetromino({ currentOrientation: this.#currentOrientation + 1, orientations: this.#orientations })
     }
 
     #shape() {
