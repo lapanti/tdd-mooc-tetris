@@ -47,12 +47,17 @@ export class RotatingShape implements Shape {
     rotateRight() {
         const size = this.#shape.length;
         const rotated = createNewArrayArray(size);
+
         for (let row = 0; row < size; row++) {
-          for (let column = 0; column < size; column++) {
+            for (let column = 0; column < size; column++) {
             rotated[row][column] = this.#shape[size - 1 - column][row];
-          }
+            }
         }
 
         return new RotatingShape(rotated);
-      }
+    }
+
+    rotateLeft() {
+        return this.rotateRight().rotateRight().rotateRight()
+    }
 }
