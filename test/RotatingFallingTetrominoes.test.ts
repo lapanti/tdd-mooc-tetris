@@ -22,4 +22,52 @@ describe("Rotating falling tetrominoes", () => {
        ..........`
     );
   });
+
+  test("can rotate the shape right twice", () => {
+    board.drop(Tetromino.T_SHAPE);
+    board.rotateRight();
+    board.rotateRight();
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ...TTT....
+       ....T.....
+       ..........
+       ..........
+       ..........`
+    );
+  });
+
+  test("can rotate the shape right thrice", () => {
+    board.drop(Tetromino.T_SHAPE);
+    board.rotateRight();
+    board.rotateRight();
+    board.rotateRight();
+
+    expect(board.toString()).to.equalShape(
+      `....T.....
+       ...TT.....
+       ....T.....
+       ..........
+       ..........
+       ..........`
+    );
+  });
+
+  test("can rotate the shape right four times", () => {
+    board.drop(Tetromino.T_SHAPE);
+    board.rotateRight();
+    board.rotateRight();
+    board.rotateRight();
+    board.rotateRight();
+
+    expect(board.toString()).to.equalShape(
+        `....T.....
+         ...TTT....
+         ..........
+         ..........
+         ..........
+         ..........`
+    );
+  });
 });
