@@ -99,7 +99,7 @@ describe("Moving tetrominoes", () => {
     );
   });
 
-  test("can not move the shape on top of another", () => {
+  test("can not move the shape on top of another (left)", () => {
     board.drop(Tetromino.T_SHAPE);
     for (let i = 0; i < 3; i++) {
         board.moveLeft()
@@ -133,6 +133,43 @@ describe("Moving tetrominoes", () => {
        ..........
        .T.OO.....
        TTTOO.....`
+    );
+  });
+
+  test("can not move the shape on top of another (right)", () => {
+    board.drop(Tetromino.T_SHAPE);
+    for (let i = 0; i < 4; i++) {
+        board.moveRight()
+    }
+    for (let i = 0; i < 10; i++) {
+        board.tick();
+    }
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ..........
+       ..........
+       ..........
+       ........T.
+       .......TTT`
+    );
+
+    board.drop(Tetromino.O_SHAPE)
+    for (let i = 0; i < 4; i++) {
+        board.tick()
+    }
+    
+    for (let i = 0; i < 10; i++) {
+       board.moveRight()
+    }
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ..........
+       ..........
+       ..........
+       .....OO.T.
+       .....OOTTT`
     );
   });
 });

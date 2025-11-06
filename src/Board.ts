@@ -193,9 +193,11 @@ export class Board {
     if (this.hasFalling()) {
       const attempt = this.#falling!.moveRight()
 
-      if (!this.#hitsWall(attempt)) {
-        this.#falling = attempt
+      if (this.#hitsWall(attempt) || this.#hitsImmobile(attempt)) {
+        return
       }
+
+      this.#falling = attempt
     }
   }
 
