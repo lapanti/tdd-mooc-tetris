@@ -2,23 +2,24 @@ import { RotatingShape } from "./RotatingShape";
 import { Shape } from "./Shape";
 
 export class Tetromino implements Shape {
-    static T_SHAPE = new Tetromino(
-        0,
-        4,
-        `.T.
-         TTT
-         ...`
-    )
+    static T_SHAPE = new Tetromino({
+        currentOrientation: 0,
+        numberOfOrientations: 4,
+        initialShape: `.T.
+            TTT
+            ...`
+    })
 
     #currentOrientation: number
     #orientations: RotatingShape[]
 
-    constructor(
-        currentOrientation: number,
-        orientations: number,
-        initialShape?: string,
-    ) {
-        if (typeof initialShape === 'string') {
+    constructor({
+        currentOrientation,
+        numberOfOrientations,
+        initialShape,
+        orientations,
+    }: { currentOrientation: number; numberOfOrientations?: number; initialShape?: string; orientations?: RotatingShape[] }) {
+        if (initialShape) {
             this.#currentOrientation = currentOrientation
             const shape = new RotatingShape(initialShape)
             this.#orientations = [
@@ -26,7 +27,7 @@ export class Tetromino implements Shape {
                 shape.rotateRight(),
                 shape.rotateRight().rotateRight(),
                 shape.rotateRight().rotateRight().rotateRight()
-            ].slice(0, orientations)
+            ].slice(0, numberOfOrientations)
         } else {
             this.#currentOrientation = currentOrientation
             this.#orientations = []
