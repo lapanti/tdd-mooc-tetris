@@ -182,4 +182,12 @@ export class Board {
       this.#falling = attempt
     }
   }
+
+  moveDown() {
+    if (this.hasFalling()) {
+      const attempt = this.#falling!.moveDown()
+
+      this.#falling = attempt
+    }
+  }
 }
