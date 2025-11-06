@@ -22,4 +22,18 @@ describe("Moving tetrominoes", () => {
        ..........`
     );
   });
+
+  test("can move the shape right", () => {
+    board.drop(Tetromino.T_SHAPE);
+    board.moveRight();
+
+    expect(board.toString()).to.equalShape(
+      `.....T....
+       ....TTT...
+       ..........
+       ..........
+       ..........
+       ..........`
+    );
+  });
 });
