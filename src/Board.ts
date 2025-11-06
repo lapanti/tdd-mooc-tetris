@@ -96,7 +96,7 @@ export class Board {
     return this.#height;
   }
 
-  drop(block: string) {
+  drop(block: string | Shape) {
     const piece = typeof block === 'string' ? new Block(block) : block
 
     if (this.hasFalling()) {
