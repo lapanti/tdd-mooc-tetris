@@ -21,6 +21,10 @@ export class Block implements Shape {
     }
   }
 
+  rotateRight(): Shape {
+    return this
+  }
+
   toString() {
     return shapeToString(this);
   }

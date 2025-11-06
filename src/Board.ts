@@ -38,6 +38,10 @@ class MovableShape implements Shape {
     return new MovableShape(this.#shape, this.#row, this.#col + 1)
   }
 
+  rotateRight() {
+    return new MovableShape(this.#shape.rotateRight(), this.#row, this.#col)
+  }
+
   height() {
     return this.#row + this.#shape.height();
   }
@@ -210,6 +214,14 @@ export class Board {
       } else {
         this.#falling = attempt
       }
+    }
+  }
+
+  rotateRight() {
+    if (this.hasFalling()) {
+      const attempt = this.#falling!.rotateRight()
+
+      this.#falling = attempt
     }
   }
 }

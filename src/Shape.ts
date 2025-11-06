@@ -3,6 +3,8 @@ export interface Shape {
     height(): number
 
     blockAt(row: number, col: number): string | undefined
+
+    rotateRight(): Shape
 }
 
 export const shapeToString = (shape: Shape): string => {
