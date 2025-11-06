@@ -172,4 +172,34 @@ describe("Moving tetrominoes", () => {
        .....OOTTT`
     );
   });
+
+  test("can not move the shape on top of another (down)", () => {
+    board.drop(Tetromino.T_SHAPE);
+    for (let i = 0; i < 10; i++) {
+        board.tick();
+    }
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ..........
+       ..........
+       ..........
+       ....T.....
+       ...TTT....`
+    );
+
+    board.drop(Tetromino.O_SHAPE)
+    for (let i = 0; i < 10; i++) {
+        board.moveDown()
+    }
+
+    expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ....OO....
+         ....OO....
+         ....T.....
+         ...TTT....`
+    );
+  });
 });
