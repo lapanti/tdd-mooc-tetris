@@ -82,4 +82,20 @@ describe("Moving tetrominoes", () => {
        ..........`
     );
   });
+
+  test("can not drop the shape out of the board", () => {
+    board.drop(Tetromino.T_SHAPE);
+    for (let i = 0; i < 10; i++) {
+        board.moveDown();
+    }
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ..........
+       ..........
+       ..........
+       ....T.....
+       ...TTT....`
+    );
+  });
 });
