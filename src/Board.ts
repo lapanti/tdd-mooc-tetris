@@ -114,6 +114,16 @@ export class Board {
     this.#falling = new MovableShape(piece, 0, Math.floor((this.width() - piece.width()) / 2))
   }
 
+  #hitsWall(falling: MovableShape) {
+    for (const point of falling.nonEmptyPoints()) {
+      if (point.col < 0) {
+        return true
+      }
+    }
+
+    return false
+  }
+
   #hitsFloor(falling: MovableShape) {
     for (const point of falling.nonEmptyPoints()) {
       if (point.row >= this.height()) {
@@ -171,7 +181,9 @@ export class Board {
     if (this.hasFalling()) {
       const attempt = this.#falling!.moveLeft()
 
-      this.#falling = attempt
+      if (!this.#hitsWall(attempt)) {
+        this.#falling = attempt
+      }
     }
   }
 
