@@ -29,13 +29,18 @@ export class Tetromino implements Shape {
                 shape.rotateRight().rotateRight().rotateRight()
             ].slice(0, numberOfOrientations)
         } else {
-            this.#currentOrientation = currentOrientation
-            this.#orientations = orientations as RotatingShape[]
+            orientations = orientations as RotatingShape[]
+            this.#currentOrientation = (currentOrientation + orientations.length) % orientations.length
+            this.#orientations = orientations
         }
     }
 
     rotateRight() {
         return new Tetromino({ currentOrientation: this.#currentOrientation + 1, orientations: this.#orientations })
+    }
+
+    rotateLeft() {
+        return new Tetromino({ currentOrientation: this.#currentOrientation - 1, orientations: this.#orientations })
     }
 
     #shape() {
