@@ -10,6 +10,16 @@ export class Tetromino implements Shape {
             ...`
     })
 
+    static I_SHAPE = new Tetromino({
+        currentOrientation: 0,
+        numberOfOrientations: 2,
+        initialShape: `.....
+            .....
+            IIII.
+            .....
+            .....`
+    })
+
     #currentOrientation: number
     #orientations: RotatingShape[]
 
