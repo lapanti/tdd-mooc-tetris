@@ -30,6 +30,10 @@ class MovableShape implements Shape {
     return new MovableShape(this.#shape, this.#row + 1, this.#col)
   }
 
+  moveLeft() {
+    return new MovableShape(this.#shape, this.#row, this.#col - 1)
+  }
+
   height() {
     return this.#row + this.#shape.height();
   }
@@ -156,6 +160,14 @@ export class Board {
       } else {
         this.#falling = attempt
       }
+    }
+  }
+
+  moveLeft() {
+    if (this.hasFalling()) {
+      const attempt = this.#falling!.moveLeft()
+
+      this.#falling = attempt
     }
   }
 }
