@@ -238,7 +238,12 @@ export class Board {
     if (this.hasFalling()) {
       const attempt = this.#falling!.rotateLeft()
 
-      this.#falling = attempt
+      if (this.#hitsFloor(attempt)) {
+        return undefined
+      } else {
+        this.#falling = attempt
+        return attempt
+      }
     }
   }
 }
