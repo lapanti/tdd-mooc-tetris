@@ -188,4 +188,26 @@ describe("Rotating falling tetrominoes", () => {
          ...TTT....`
     );
   });
+
+  test("can not rotate the shape left if it doesn't fit on a board with other blocks", () => {
+    board.drop(Tetromino.O_SHAPE);
+    for (let i = 0; i < 10; i++) {
+        board.tick()
+    }
+
+    board.drop(Tetromino.T_SHAPE);
+    for (let i = 0; i < 2; i++) {
+        board.tick()
+    }
+    board.rotateLeft();
+    
+    expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ....T.....
+         ...TTT....
+         ....OO....
+         ....OO....`
+    );
+  });
 });

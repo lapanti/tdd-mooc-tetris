@@ -238,7 +238,7 @@ export class Board {
     if (this.hasFalling()) {
       const attempt = this.#falling!.rotateLeft()
 
-      if (this.#hitsFloor(attempt)) {
+      if (this.#hitsFloor(attempt) || this.#hitsImmobile(attempt)) {
         return undefined
       } else {
         this.#falling = attempt
