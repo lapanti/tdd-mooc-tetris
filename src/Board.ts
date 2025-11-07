@@ -39,7 +39,7 @@ class MovableShape implements Shape {
   }
 
   rotateRight() {
-    return new MovableShape(this.#shape.rotateRight(), this.#row, this.#col)
+    return new MovableShape(this.#shape.rotateRight() as Shape, this.#row, this.#col)
   }
 
   height() {
@@ -221,7 +221,12 @@ export class Board {
     if (this.hasFalling()) {
       const attempt = this.#falling!.rotateRight()
 
-      this.#falling = attempt
+      if (this.#hitsFloor(attempt)) {
+        return undefined
+      } else {
+        this.#falling = attempt
+        return attempt
+      }
     }
   }
 }

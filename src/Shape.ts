@@ -4,7 +4,7 @@ export interface Shape {
 
     blockAt(row: number, col: number): string | undefined
 
-    rotateRight(): Shape
+    rotateRight(): Shape | null | undefined
 }
 
 export const shapeToString = (shape: Shape): string => {
