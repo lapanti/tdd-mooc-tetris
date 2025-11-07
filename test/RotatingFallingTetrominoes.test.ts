@@ -109,4 +109,66 @@ describe("Rotating falling tetrominoes", () => {
          ....OO....`
     );
   });
+
+  test("can rotate the shape left", () => {
+    board.drop(Tetromino.T_SHAPE);
+    board.rotateLeft();
+
+    expect(board.toString()).to.equalShape(
+      `....T.....
+       ...TT.....
+       ....T.....
+       ..........
+       ..........
+       ..........`
+    );
+  });
+
+  test("can rotate the shape left twice", () => {
+    board.drop(Tetromino.T_SHAPE);
+    board.rotateLeft();
+    board.rotateLeft();
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ...TTT....
+       ....T.....
+       ..........
+       ..........
+       ..........`
+    );
+  });
+
+  test("can rotate the shape left thrice", () => {
+    board.drop(Tetromino.T_SHAPE);
+    board.rotateLeft();
+    board.rotateLeft();
+    board.rotateLeft();
+
+    expect(board.toString()).to.equalShape(
+      `....T.....
+       ....TT....
+       ....T.....
+       ..........
+       ..........
+       ..........`
+    );
+  });
+
+  test("can rotate the shape left four times", () => {
+    board.drop(Tetromino.T_SHAPE);
+    board.rotateLeft();
+    board.rotateLeft();
+    board.rotateLeft();
+    board.rotateLeft();
+
+    expect(board.toString()).to.equalShape(
+        `....T.....
+         ...TTT....
+         ..........
+         ..........
+         ..........
+         ..........`
+    );
+  });
 });
