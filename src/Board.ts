@@ -262,6 +262,13 @@ export class Board {
     if (this.hasFalling()) {
       const attempt = this.#falling!.rotateLeft()
 
+      const wallkickAttempt = this.#wallKick(attempt)
+
+      if (wallkickAttempt) {
+        this.#falling = wallkickAttempt
+        return wallkickAttempt
+      }
+
       if (this.#hitsFloor(attempt) || this.#hitsImmobile(attempt)) {
         return undefined
       } else {
