@@ -210,4 +210,32 @@ describe("Rotating falling tetrominoes", () => {
          ....OO....`
     );
   });
+
+  test.only("can wall kick on rotate right", () => {
+    board.drop(Tetromino.T_SHAPE);
+    board.rotateLeft()
+    for (let i = 0; i < 5; i++) {
+        board.moveRight()
+    }
+
+    expect(board.toString()).to.equalShape(
+        `.........T
+         ........TT
+         .........T
+         ..........
+         ..........
+         ..........`
+    )
+
+    board.rotateRight()
+
+    expect(board.toString()).to.equalShape(
+        `........T.
+         .......TTT
+         ..........
+         ..........
+         ..........
+         ..........`
+    )
+  })
 });

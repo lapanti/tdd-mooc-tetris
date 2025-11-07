@@ -225,6 +225,21 @@ export class Board {
     if (this.hasFalling()) {
       const attempt = this.#falling!.rotateRight()
 
+      if (this.#hitsWall(attempt)) {
+        const wallKickRight = attempt.moveLeft()
+        // If the wall that was kicked was on the left, kick the left wall
+        if (this.#hitsWall(wallKickRight)) {
+          const wallKickLeft = attempt.moveRight()
+          if (!this.#hitsWall(wallKickLeft)) {
+            this.#falling = wallKickLeft
+            return wallKickLeft
+          }
+        } else {
+          this.#falling = wallKickRight
+          return wallKickRight
+        }
+      }
+
       if (this.#hitsFloor(attempt) || this.#hitsImmobile(attempt)) {
         return undefined
       } else {
