@@ -1,4 +1,3 @@
-import { RotatingShape } from "./RotatingShape";
 import { Shape, shapeToString } from "./Shape";
 
 class SimpleShape implements Shape {
@@ -98,23 +97,11 @@ export class Tetromino implements Shape {
     constructor({
         currentOrientation,
         numberOfOrientations,
-        initialShape,
         orientations,
-    }: { currentOrientation: number; numberOfOrientations?: number; initialShape?: string; orientations?: Shape[] }) {
-        if (initialShape) {
-            this.#currentOrientation = currentOrientation
-            const shape = new RotatingShape(initialShape)
-            this.#orientations = [
-                shape,
-                shape.rotateRight(),
-                shape.rotateRight().rotateRight(),
-                shape.rotateRight().rotateRight().rotateRight()
-            ].slice(0, numberOfOrientations)
-        } else {
-            orientations = orientations as RotatingShape[]
-            this.#currentOrientation = (currentOrientation + orientations.length) % orientations.length
-            this.#orientations = orientations
-        }
+    }: { currentOrientation: number; numberOfOrientations?: number; orientations: Shape[] }) {
+        orientations = orientations
+        this.#currentOrientation = (currentOrientation + orientations.length) % orientations.length
+        this.#orientations = orientations
     }
 
     rotateRight() {
