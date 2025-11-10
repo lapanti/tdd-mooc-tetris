@@ -20,28 +20,25 @@ describe("The T shape", () => {
 
   test("initial orientation", () => {
     expect(shape.toString()).to.equalShape(
-      `TTT.
-       .T..
-       ....
-       ....`
+      `TTT
+       .T.
+       ...`
     );
   });
 
   test("can be rotated right/clockwise", () => {
     expect(shape.rotateRight().toString()).to.equalShape(
-      `.T..
-       TT..
-       .T..
-       ....`
+      `.T.
+       TT.
+       .T.`
     );
   });
 
   test("can be rotated left/counter-clockwise", () => {
     expect(shape.rotateLeft().toString()).to.equalShape(
-      `.T..
-       .TT.
-       .T..
-       ....`
+      `.T.
+       .TT
+       .T.`
     );
   });
 
@@ -90,25 +87,22 @@ describe("The O shape", () => {
 
   test("initial orientation", () => {
     expect(shape.toString()).to.equalShape(
-      `.OO
-       .OO
-       ...`
+      `OO
+       OO`
     );
   });
 
   test.skip("cannot be rotated right/clockwise", () => {
     expect(shape.rotateRight().toString()).to.equalShape(
-      `.OO
-       .OO
-       ...`
+      `OO
+       OO`
     );
   });
 
   test.skip("cannot be rotated left/counter-clockwise", () => {
     expect(shape.rotateLeft().toString()).to.equalShape(
-      `.OO
-       .OO
-       ...`
+      `OO
+       OO`
     );
   });
 
