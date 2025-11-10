@@ -69,11 +69,20 @@ export class Tetromino implements Shape {
     static I_SHAPE = new Tetromino({
         currentOrientation: 0,
         numberOfOrientations: 2,
-        initialShape: `.....
-            .....
-            IIII.
-            .....
-            .....`
+        orientations: [
+            new SimpleShape([
+                ['.','.','.','.'],
+                ['I','I','I','I'],
+                ['.','.','.','.'],
+                ['.','.','.','.'],
+            ]),
+            new SimpleShape([
+                ['.','.','I','.'],
+                ['.','.','I','.'],
+                ['.','.','I','.'],
+                ['.','.','I','.'],
+            ])
+        ]
     })
 
     static O_SHAPE = new Tetromino({
