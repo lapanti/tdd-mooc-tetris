@@ -100,22 +100,14 @@ describe("Moving tetrominoes", () => {
   });
 
   test("can not move the shape on top of another (left)", () => {
-    board.drop(Tetromino.T_SHAPE);
-    for (let i = 0; i < 3; i++) {
-        board.moveLeft()
-    }
-    for (let i = 0; i < 10; i++) {
-        board.tick();
-    }
-
-    expect(board.toString()).to.equalShape(
-      `..........
-       ..........
-       ..........
-       ..........
-       TTT.......
-       .T........`
-    );
+    board = new Board(10, 6, [
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['T','T','T','.','.','.','.','.','.','.'],
+      ['.','T','.','.','.','.','.','.','.','.'],
+    ])
 
     board.drop(Tetromino.O_SHAPE)
     for (let i = 0; i < 4; i++) {
@@ -137,22 +129,14 @@ describe("Moving tetrominoes", () => {
   });
 
   test("can not move the shape on top of another (right)", () => {
-    board.drop(Tetromino.T_SHAPE);
-    for (let i = 0; i < 4; i++) {
-        board.moveRight()
-    }
-    for (let i = 0; i < 10; i++) {
-        board.tick();
-    }
-
-    expect(board.toString()).to.equalShape(
-      `..........
-       ..........
-       ..........
-       ..........
-       .......TTT
-       ........T.`
-    );
+    board = new Board(10, 6, [
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','T','T','T'],
+      ['.','.','.','.','.','.','.','.','T','.'],
+    ])
 
     board.drop(Tetromino.O_SHAPE)
     for (let i = 0; i < 4; i++) {
@@ -174,19 +158,14 @@ describe("Moving tetrominoes", () => {
   });
 
   test("can not move the shape on top of another (down)", () => {
-    board.drop(Tetromino.T_SHAPE);
-    for (let i = 0; i < 10; i++) {
-        board.tick();
-    }
-
-    expect(board.toString()).to.equalShape(
-      `..........
-       ..........
-       ..........
-       ..........
-       ...TTT....
-       ....T.....`
-    );
+    board = new Board(10, 6, [
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','T','T','T','.','.','.','.'],
+      ['.','.','.','.','T','.','.','.','.','.'],
+    ])
 
     board.drop(Tetromino.O_SHAPE)
     for (let i = 0; i < 10; i++) {

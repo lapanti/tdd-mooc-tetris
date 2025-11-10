@@ -86,12 +86,14 @@ export class Board {
   #immobile: string[][];
   blocks: { column: number; row: number; character: string }[];
 
-  constructor(width: number, height: number) {
+  constructor(width: number, height: number, immobile?: string[][]) {
     this.#width = width;
     this.#height = height;
-    this.#immobile = new Array(height)
-    for (let row = 0; row < height; row++) {
-      this.#immobile[row] = Array.from(EMPTY.repeat(width))
+    this.#immobile = immobile || new Array(height)
+    if (!immobile) {
+      for (let row = 0; row < height; row++) {
+        this.#immobile[row] =  Array.from(EMPTY.repeat(width))
+      }
     }
     this.blocks = [];
   }
