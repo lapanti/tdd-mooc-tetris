@@ -89,10 +89,14 @@ describe("Rotating falling tetrominoes", () => {
   });
 
   test("can not rotate the shape right if it doesn't fit on a board with other blocks", () => {
-    board.drop(Tetromino.O_SHAPE);
-    for (let i = 0; i < 10; i++) {
-        board.tick()
-    }
+    board = new Board(10, 6, [
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','O','O','.','.','.','.'],
+      ['.','.','.','.','O','O','.','.','.','.'],
+    ])
 
     board.drop(Tetromino.T_SHAPE);
     for (let i = 0; i < 2; i++) {
@@ -190,10 +194,14 @@ describe("Rotating falling tetrominoes", () => {
   });
 
   test("can not rotate the shape left if it doesn't fit on a board with other blocks", () => {
-    board.drop(Tetromino.O_SHAPE);
-    for (let i = 0; i < 10; i++) {
-        board.tick()
-    }
+    board = new Board(10, 6, [
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.','.','.','.'],
+      ['.','.','.','.','O','O','.','.','.','.'],
+      ['.','.','.','.','O','O','.','.','.','.'],
+    ])
 
     board.drop(Tetromino.T_SHAPE);
     for (let i = 0; i < 2; i++) {
