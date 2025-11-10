@@ -172,6 +172,14 @@ export class Board {
       }
     }
 
+    for (let row = 0; row < this.height(); row++) {
+      if (this.#immobile[row].every((value) => value !== EMPTY)) {
+        // Row is full, so clear it
+        this.#immobile.splice(row, 1)
+        this.#immobile = [Array.from(EMPTY.repeat(this.width()))].concat(this.#immobile)
+      }
+    }
+
     this.#falling = null
   }
 
