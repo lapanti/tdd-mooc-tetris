@@ -1,6 +1,35 @@
 import { RotatingShape } from "./RotatingShape";
 import { Shape } from "./Shape";
 
+class SimpleShape implements Shape {
+    #shape: string[][]
+
+    constructor(shape: string[][]) {
+        this.#shape = shape
+    }
+
+    width() {
+        return this.#shape[0].length
+    }
+
+    height() {
+        return this.#shape.length
+    }
+    
+
+    blockAt(row: number, col: number) {
+        return this.#shape[row][col];
+    }
+
+    rotateRight(): Shape | null | undefined {
+        return undefined
+    }
+
+    rotateLeft(): Shape | null | undefined {
+        return undefined
+    }
+}
+
 export class Tetromino implements Shape {
     static T_SHAPE = new Tetromino({
         currentOrientation: 0,
