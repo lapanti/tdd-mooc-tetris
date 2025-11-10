@@ -1,5 +1,5 @@
 import { RotatingShape } from "./RotatingShape";
-import { Shape } from "./Shape";
+import { Shape, shapeToString } from "./Shape";
 
 class SimpleShape implements Shape {
     #shape: string[][]
@@ -28,15 +28,42 @@ class SimpleShape implements Shape {
     rotateLeft(): Shape | null | undefined {
         return undefined
     }
+
+    toString() {
+        return shapeToString(this)
+    }
 }
 
 export class Tetromino implements Shape {
     static T_SHAPE = new Tetromino({
         currentOrientation: 0,
         numberOfOrientations: 4,
-        initialShape: `.T.
-            TTT
-            ...`
+        orientations: [
+            new SimpleShape([
+                ['T','T','T','.'],
+                ['.','T','.','.'],
+                ['.','.','.','.'],
+                ['.','.','.','.'],
+            ]),
+            new SimpleShape([
+                ['.','T','.','.'],
+                ['T','T','.','.'],
+                ['.','T','.','.'],
+                ['.','.','.','.'],
+            ]),
+            new SimpleShape([
+                ['.','.','.','.'],
+                ['.','T','.','.'],
+                ['T','T','T','.'],
+                ['.','.','.','.'],
+            ]),
+            new SimpleShape([
+                ['.','T','.','.'],
+                ['.','T','T','.'],
+                ['.','T','.','.'],
+                ['.','.','.','.'],
+            ]),
+        ]
     })
 
     static I_SHAPE = new Tetromino({
@@ -58,14 +85,14 @@ export class Tetromino implements Shape {
     })
 
     #currentOrientation: number
-    #orientations: RotatingShape[]
+    #orientations: Shape[]
 
     constructor({
         currentOrientation,
         numberOfOrientations,
         initialShape,
         orientations,
-    }: { currentOrientation: number; numberOfOrientations?: number; initialShape?: string; orientations?: RotatingShape[] }) {
+    }: { currentOrientation: number; numberOfOrientations?: number; initialShape?: string; orientations?: Shape[] }) {
         if (initialShape) {
             this.#currentOrientation = currentOrientation
             const shape = new RotatingShape(initialShape)
