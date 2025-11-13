@@ -1,6 +1,4 @@
-import { Subscriber } from "./Subscriber";
-
-export class ScoringSystem implements Subscriber {
+export class ScoringSystem {
     #score: number
 
     constructor() {

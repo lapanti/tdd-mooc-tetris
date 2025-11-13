@@ -1,6 +1,5 @@
 import { Block } from './Block';
 import { Shape, shapeToString } from './Shape'
-import { Subscriber } from './Subscriber';
 
 const EMPTY = '.'
 
