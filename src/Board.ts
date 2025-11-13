@@ -295,6 +295,10 @@ export class Board {
     this.#subscribers = this.#subscribers.concat(subscriber)
   }
 
+  unsubscribe(subscriber: Subscriber) {
+    this.#subscribers = this.#subscribers.filter((existingSubscriber) => existingSubscriber !== subscriber)
+  }
+
   getSubscribers(): Subscriber[] {
     return this.#subscribers.slice()
   }

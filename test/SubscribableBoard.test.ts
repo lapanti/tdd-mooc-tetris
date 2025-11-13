@@ -32,4 +32,14 @@ describe("Subscribable Board", () => {
 
     expect(board.getSubscribers()).to.include(subscriber)
   })
+
+  test('The board can be unsubscribed from', () => {
+    const subscriber = new TestSubscriber()
+
+    board.subscribe(subscriber)
+
+    board.unsubscribe(subscriber)
+
+    expect(board.getSubscribers()).to.not.include(subscriber)
+  })
 });
