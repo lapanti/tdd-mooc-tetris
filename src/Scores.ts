@@ -8,7 +8,7 @@ export class Scores implements Subscriber {
     }
 
     notifyAboutClearance(lines: number): undefined {
-        this.#score += lines
+        this.#score += 40
     }
 
     getScore(): number {
