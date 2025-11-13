@@ -1,25 +1,25 @@
 import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Board } from "../src/Board";
-import { Scores } from "../src/Scores";
+import { ScoringSystem } from "../src/ScoringSystem";
 import { Tetromino } from "../src/Tetromino";
 
-describe("Scores", () => {
+describe("ScoringSystem", () => {
   let board: Board;
   beforeEach(() => {
     board = new Board(3, 3);
   });
 
-  test('Scores can subscribe to Board', () => {
-    const scores = new Scores()
+  test('can subscribe to Board', () => {
+    const scores = new ScoringSystem()
 
     board.subscribe(scores)
 
     expect(board.getSubscribers()).to.include(scores)
   })
 
-  test('Scores returns score', () => {
-    const scores = new Scores()
+  test('returns score', () => {
+    const scores = new ScoringSystem()
 
     expect(scores.getScore()).to.eq(0)
   })
@@ -39,7 +39,7 @@ describe("Scores", () => {
             ['X','X','X','X','.','.','X','X','X','X'],
           ])
 
-        const scores = new Scores()
+        const scores = new ScoringSystem()
 
         board.subscribe(scores)
 
@@ -66,7 +66,7 @@ describe("Scores", () => {
             ['X','X','X','X','.','.','X','X','X','X'],
           ])
 
-        const scores = new Scores()
+        const scores = new ScoringSystem()
 
         board.subscribe(scores)
 
@@ -99,7 +99,7 @@ describe("Scores", () => {
             ['X','X','X','X','.','.','X','X','X','X'],
           ])
 
-        const scores = new Scores()
+        const scores = new ScoringSystem()
 
         board.subscribe(scores)
 
@@ -126,7 +126,7 @@ describe("Scores", () => {
             ['X','X','X','X','X','.','X','X','X','X'],
           ])
 
-        const scores = new Scores()
+        const scores = new ScoringSystem()
 
         board.subscribe(scores)
 
@@ -154,7 +154,7 @@ describe("Scores", () => {
             ['X','X','X','X','X','.','X','X','X','X'],
           ])
 
-        const scores = new Scores()
+        const scores = new ScoringSystem()
 
         board.subscribe(scores)
 

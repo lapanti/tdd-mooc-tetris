@@ -1,6 +1,6 @@
 import { Subscriber } from "./Subscriber";
 
-export class Scores implements Subscriber {
+export class ScoringSystem implements Subscriber {
     #score: number
 
     constructor() {
