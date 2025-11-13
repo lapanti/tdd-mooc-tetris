@@ -13,7 +13,7 @@ describe("ScoringSystem", () => {
   test('returns score', () => {
     const scores = new ScoringSystem()
 
-    expect(scores.getScore()).to.eq(0)
+    expect(scores.score).to.eq(0)
   })
 
   describe('scores cleared rows correctly', () => {
@@ -43,7 +43,7 @@ describe("ScoringSystem", () => {
             board.tick()
         }
 
-        expect(scores.getScore()).to.eq(40)
+        expect(scores.score).to.eq(40)
     })
 
     test('gets 80 points from clearing 2 lines in succession', () => {
@@ -78,7 +78,7 @@ describe("ScoringSystem", () => {
             board.tick()
         }
 
-        expect(scores.getScore()).to.eq(80)
+        expect(scores.score).to.eq(80)
     })
 
     test('gets 100 points from clearing 2 lines at the same time', () => {
@@ -107,7 +107,7 @@ describe("ScoringSystem", () => {
             board.tick()
         }
 
-        expect(scores.getScore()).to.eq(100)
+        expect(scores.score).to.eq(100)
     })
 
     test('gets 300 points from clearing 3 lines at the same time', () => {
@@ -137,7 +137,7 @@ describe("ScoringSystem", () => {
             board.tick()
         }
 
-        expect(scores.getScore()).to.eq(300)
+        expect(scores.score).to.eq(300)
     })
 
     test('gets 1200 points from clearing 4 lines at the same time', () => {
@@ -167,7 +167,7 @@ describe("ScoringSystem", () => {
             board.tick()
         }
 
-        expect(scores.getScore()).to.eq(1200)
+        expect(scores.score).to.eq(1200)
     })
   })
 });
