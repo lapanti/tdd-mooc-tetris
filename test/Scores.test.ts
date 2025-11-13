@@ -51,5 +51,38 @@ describe("Scores", () => {
 
         expect(scores.getScore()).to.eq(40)
     })
+
+    test('gets 80 points from clearing 2 lines in succession', () => {
+        board = new Board(10, 10, [
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['X','X','X','X','.','.','X','X','X','X'],
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['X','X','X','X','.','.','X','X','X','X'],
+          ])
+
+        const scores = new Scores()
+
+        board.subscribe(scores)
+
+        board.drop(Tetromino.O_SHAPE)
+
+        for (let i = 0; i < 10; i++) {
+            board.tick()
+        }
+
+        board.drop(Tetromino.O_SHAPE)
+
+        for (let i = 0; i < 10; i++) {
+            board.tick()
+        }
+
+        expect(scores.getScore()).to.eq(80)
+    })
   })
 });
