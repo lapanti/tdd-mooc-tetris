@@ -297,4 +297,8 @@ export class Board {
       }
     }
   }
+
+  cellAt(row: number, column: number): string {
+    return this.#immobile[row][column]
+  }
 }
