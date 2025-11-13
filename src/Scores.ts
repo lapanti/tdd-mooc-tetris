@@ -14,6 +14,8 @@ export class Scores implements Subscriber {
             this.#score += 100
         } else if (lines === 3) {
             this.#score += 300
+        } else {
+            this.#score += 1200
         }
     }
 
