@@ -6,7 +6,7 @@ import { Scores } from "../src/Scores";
 describe("Scores", () => {
   let board: Board;
   beforeEach(() => {
-    board = new Board(10, 10);
+    board = new Board(3, 3);
   });
 
   test('Scores can subscribe to Board', () => {
@@ -15,5 +15,11 @@ describe("Scores", () => {
     board.subscribe(scores)
 
     expect(board.getSubscribers()).to.include(scores)
+  })
+
+  test('Scores returns score', () => {
+    const scores = new Scores()
+
+    expect(scores.getScore()).to.eq(0)
   })
 });
