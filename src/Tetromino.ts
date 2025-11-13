@@ -106,7 +106,7 @@ export class Tetromino implements Shape {
                 ['.','L','.'],
             ]),
             new SimpleShape([
-                [':','.','L'],
+                ['.','.','L'],
                 ['L','L','L'],
                 ['.','.','.'],
             ]),
@@ -114,6 +114,33 @@ export class Tetromino implements Shape {
                 ['.','L','.'],
                 ['.','L','.'],
                 ['.','L','L'],
+            ]),
+        ]
+    })
+
+    static J_SHAPE = new Tetromino({
+        currentOrientation: 0,
+        numberOfOrientations: 4,
+        orientations: [
+            new SimpleShape([
+                ['J','J','J'],
+                ['.','.','J'],
+                ['.','.','.'],
+            ]),
+            new SimpleShape([
+                ['.','J','.'],
+                ['.','J','.'],
+                ['J','J','.'],
+            ]),
+            new SimpleShape([
+                ['J','.','.'],
+                ['J','J','J'],
+                ['.','.','.'],
+            ]),
+            new SimpleShape([
+                ['.','J','J'],
+                ['.','J','.'],
+                ['.','J','.'],
             ]),
         ]
     })
