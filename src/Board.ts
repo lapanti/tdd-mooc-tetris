@@ -168,8 +168,8 @@ export class Board {
     return this.#immobile[row][col];
   }
 
-  #notifySubscribers() {
-    this.#subscribers.forEach((subscriber) => subscriber.notifyAboutClearance(1))
+  #notifySubscribers(linesCleared: number) {
+    this.#subscribers.forEach((subscriber) => subscriber.notifyAboutClearance(linesCleared))
   }
 
   #stopFalling() {
@@ -180,19 +180,19 @@ export class Board {
     }
 
     // I hate using immutability for such things, but just now I have no better ideas
-    let wasRowCleared = false
+    let linesCleared = 0
     for (let row = 0; row < this.height(); row++) {
       if (this.#immobile[row].every((value) => value !== EMPTY)) {
         // Row is full, so clear it
         this.#immobile.splice(row, 1)
         this.#immobile = [Array.from(EMPTY.repeat(this.width()))].concat(this.#immobile)
 
-        wasRowCleared = true
+        linesCleared++
       }
     }
 
-    if (wasRowCleared) {
-      this.#notifySubscribers()
+    if (linesCleared > 0) {
+      this.#notifySubscribers(linesCleared)
     }
 
     this.#falling = null

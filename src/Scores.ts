@@ -8,7 +8,11 @@ export class Scores implements Subscriber {
     }
 
     notifyAboutClearance(lines: number): undefined {
-        this.#score += 40
+        if (lines === 1) {
+            this.#score += 40
+        } else {
+            this.#score += 100
+        }
     }
 
     getScore(): number {
