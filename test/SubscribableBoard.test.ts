@@ -2,6 +2,7 @@ import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Board } from "../src/Board";
 import { Subscriber } from "../src/Subscriber";
+import { Tetromino } from "../src/Tetromino";
 
 class TestSubscriber implements Subscriber {
     #lines: number
@@ -22,24 +23,33 @@ class TestSubscriber implements Subscriber {
 describe("Subscribable Board", () => {
   let board: Board;
   beforeEach(() => {
-    board = new Board(3, 3);
+    board = new Board(10, 10, [
+        ['.','.','.','.','.','.','.','.','.','.'],
+        ['.','.','.','.','.','.','.','.','.','.'],
+        ['.','.','.','.','.','.','.','.','.','.'],
+        ['.','.','.','.','.','.','.','.','.','.'],
+        ['.','.','.','.','.','.','.','.','.','.'],
+        ['.','.','.','.','.','.','.','.','.','.'],
+        ['.','.','.','.','.','.','.','.','.','.'],
+        ['.','.','.','.','.','.','.','.','.','.'],
+        ['X','X','X','X','.','.','X','X','X','X'],
+        ['X','X','X','X','.','.','X','X','X','X'],
+      ])
   });
 
   test('The board can be subscribed to', () => {
     const subscriber = new TestSubscriber()
 
-    board.subscribe(subscriber)
+    board.onClearLine = (lineCount: number) => {
+      subscriber.notifyAboutClearance(lineCount)
+    }
 
-    expect(board.getSubscribers()).to.include(subscriber)
-  })
+    board.drop(Tetromino.O_SHAPE)
 
-  test('The board can be unsubscribed from', () => {
-    const subscriber = new TestSubscriber()
+    for (let i = 0; i < 10; i++) {
+      board.tick()
+    }
 
-    board.subscribe(subscriber)
-
-    board.unsubscribe(subscriber)
-
-    expect(board.getSubscribers()).to.not.include(subscriber)
+    expect(subscriber.getLines()).to.eq(2)
   })
 });

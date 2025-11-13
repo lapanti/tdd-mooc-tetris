@@ -10,14 +10,6 @@ describe("ScoringSystem", () => {
     board = new Board(3, 3);
   });
 
-  test('can subscribe to Board', () => {
-    const scores = new ScoringSystem()
-
-    board.subscribe(scores)
-
-    expect(board.getSubscribers()).to.include(scores)
-  })
-
   test('returns score', () => {
     const scores = new ScoringSystem()
 
@@ -41,7 +33,9 @@ describe("ScoringSystem", () => {
 
         const scores = new ScoringSystem()
 
-        board.subscribe(scores)
+        board.onClearLine = (linesCleared: number) => {
+          scores.notifyAboutClearance(linesCleared)
+        }
 
         board.drop(Tetromino.O_SHAPE)
 
@@ -68,7 +62,9 @@ describe("ScoringSystem", () => {
 
         const scores = new ScoringSystem()
 
-        board.subscribe(scores)
+        board.onClearLine = (linesCleared: number) => {
+          scores.notifyAboutClearance(linesCleared)
+        }
 
         board.drop(Tetromino.O_SHAPE)
 
@@ -101,7 +97,9 @@ describe("ScoringSystem", () => {
 
         const scores = new ScoringSystem()
 
-        board.subscribe(scores)
+        board.onClearLine = (linesCleared: number) => {
+          scores.notifyAboutClearance(linesCleared)
+        }
 
         board.drop(Tetromino.O_SHAPE)
 
@@ -128,7 +126,9 @@ describe("ScoringSystem", () => {
 
         const scores = new ScoringSystem()
 
-        board.subscribe(scores)
+        board.onClearLine = (linesCleared: number) => {
+          scores.notifyAboutClearance(linesCleared)
+        }
 
         board.drop(Tetromino.I_SHAPE)
         board.rotateRight()
@@ -156,7 +156,9 @@ describe("ScoringSystem", () => {
 
         const scores = new ScoringSystem()
 
-        board.subscribe(scores)
+        board.onClearLine = (linesCleared: number) => {
+          scores.notifyAboutClearance(linesCleared)
+        }
 
         board.drop(Tetromino.I_SHAPE)
         board.rotateRight()

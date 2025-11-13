@@ -86,7 +86,6 @@ export class Board {
   #falling: MovableShape | null = null;
   #immobile: string[][];
   blocks: { column: number; row: number; character: string }[];
-  #subscribers: Subscriber[]
 
   constructor(width: number, height: number, immobile?: string[][]) {
     this.#width = width;
@@ -98,7 +97,6 @@ export class Board {
       }
     }
     this.blocks = [];
-    this.#subscribers = []
   }
 
   toString() {
@@ -168,9 +166,7 @@ export class Board {
     return this.#immobile[row][col];
   }
 
-  #notifySubscribers(linesCleared: number) {
-    this.#subscribers.forEach((subscriber) => subscriber.notifyAboutClearance(linesCleared))
-  }
+  onClearLine(linesCleared: number) {}
 
   #stopFalling() {
     for (let row = 0; row < this.height(); row++) {
@@ -192,7 +188,7 @@ export class Board {
     }
 
     if (linesCleared > 0) {
-      this.#notifySubscribers(linesCleared)
+      this.onClearLine(linesCleared)
     }
 
     this.#falling = null
@@ -301,17 +297,5 @@ export class Board {
         return attempt
       }
     }
-  }
-
-  subscribe(subscriber: Subscriber) {
-    this.#subscribers = this.#subscribers.concat(subscriber)
-  }
-
-  unsubscribe(subscriber: Subscriber) {
-    this.#subscribers = this.#subscribers.filter((existingSubscriber) => existingSubscriber !== subscriber)
-  }
-
-  getSubscribers(): Subscriber[] {
-    return this.#subscribers.slice()
   }
 }
