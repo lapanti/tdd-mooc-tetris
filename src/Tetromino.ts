@@ -162,6 +162,23 @@ export class Tetromino implements Shape {
         ]
     })
 
+    static Z_SHAPE = new Tetromino({
+        currentOrientation: 0,
+        numberOfOrientations: 2,
+        orientations: [
+            new SimpleShape([
+                ['Z','Z','.'],
+                ['.','Z','Z'],
+                ['.','.','.'],
+            ]),
+            new SimpleShape([
+                ['.','.','Z'],
+                ['.','Z','Z'],
+                ['.','Z','.'],
+            ]),
+        ]
+    })
+
     #currentOrientation: number
     #orientations: Shape[]
 
