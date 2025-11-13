@@ -111,5 +111,33 @@ describe("Scores", () => {
 
         expect(scores.getScore()).to.eq(100)
     })
+
+    test('gets 300 points from clearing 3 lines at the same time', () => {
+        board = new Board(10, 10, [
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['.','.','.','.','.','.','.','.','.','.'],
+            ['X','X','X','X','X','.','X','X','X','X'],
+            ['X','X','X','X','X','.','X','X','X','X'],
+            ['X','X','X','X','X','.','X','X','X','X'],
+          ])
+
+        const scores = new Scores()
+
+        board.subscribe(scores)
+
+        board.drop(Tetromino.I_SHAPE)
+        board.rotateRight()
+
+        for (let i = 0; i < 10; i++) {
+            board.tick()
+        }
+
+        expect(scores.getScore()).to.eq(300)
+    })
   })
 });
