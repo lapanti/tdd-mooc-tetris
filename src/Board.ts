@@ -1,5 +1,6 @@
 import { Block } from './Block';
 import { Shape, shapeToString } from './Shape'
+import { Subscriber } from './Subscriber';
 
 const EMPTY = '.'
 
@@ -85,6 +86,7 @@ export class Board {
   #falling: MovableShape | null = null;
   #immobile: string[][];
   blocks: { column: number; row: number; character: string }[];
+  #subscribers: Subscriber[]
 
   constructor(width: number, height: number, immobile?: string[][]) {
     this.#width = width;
@@ -96,6 +98,7 @@ export class Board {
       }
     }
     this.blocks = [];
+    this.#subscribers = []
   }
 
   toString() {
@@ -286,5 +289,13 @@ export class Board {
         return attempt
       }
     }
+  }
+
+  subscribe(subscriber: Subscriber) {
+    this.#subscribers = this.#subscribers.concat(subscriber)
+  }
+
+  getSubscribers(): Subscriber[] {
+    return this.#subscribers.slice()
   }
 }

@@ -24,4 +24,12 @@ describe("Subscribable Board", () => {
   beforeEach(() => {
     board = new Board(3, 3);
   });
+
+  test('The board can be subscribed to', () => {
+    const subscriber = new TestSubscriber()
+
+    board.subscribe(subscriber)
+
+    expect(board.getSubscribers()).to.include(subscriber)
+  })
 });
