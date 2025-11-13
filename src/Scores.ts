@@ -7,7 +7,7 @@ export class Scores implements Subscriber {
         this.#score = 0
     }
 
-    notifyDeletedLines(lines: number): undefined {
+    notifyAboutClearance(lines: number): undefined {
         this.#score += lines
     }
 }

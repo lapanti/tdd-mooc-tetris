@@ -10,7 +10,7 @@ class TestSubscriber implements Subscriber {
         this.#lines = 0
     }
 
-    notifyDeletedLines(lines: number): undefined {
+    notifyAboutClearance(lines: number): undefined {
         this.#lines += lines
     }
 

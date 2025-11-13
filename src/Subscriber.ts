@@ -1,3 +1,3 @@
 export interface Subscriber {
-    notifyDeletedLines(lines: number): undefined
+    notifyAboutClearance(lines: number): undefined
 }
