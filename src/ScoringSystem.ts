@@ -5,7 +5,7 @@ export class ScoringSystem {
         this.#score = 0
     }
 
-    notifyAboutClearance(lines: number): undefined {
+    linesCleared(lines: number): undefined {
         if (lines === 1) {
             this.#score += 40
         } else if (lines === 2) {

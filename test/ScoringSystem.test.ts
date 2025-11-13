@@ -34,7 +34,7 @@ describe("ScoringSystem", () => {
         const scores = new ScoringSystem()
 
         board.onClearLine = (linesCleared: number) => {
-          scores.notifyAboutClearance(linesCleared)
+          scores.linesCleared(linesCleared)
         }
 
         board.drop(Tetromino.O_SHAPE)
@@ -63,7 +63,7 @@ describe("ScoringSystem", () => {
         const scores = new ScoringSystem()
 
         board.onClearLine = (linesCleared: number) => {
-          scores.notifyAboutClearance(linesCleared)
+          scores.linesCleared(linesCleared)
         }
 
         board.drop(Tetromino.O_SHAPE)
@@ -98,7 +98,7 @@ describe("ScoringSystem", () => {
         const scores = new ScoringSystem()
 
         board.onClearLine = (linesCleared: number) => {
-          scores.notifyAboutClearance(linesCleared)
+          scores.linesCleared(linesCleared)
         }
 
         board.drop(Tetromino.O_SHAPE)
@@ -127,7 +127,7 @@ describe("ScoringSystem", () => {
         const scores = new ScoringSystem()
 
         board.onClearLine = (linesCleared: number) => {
-          scores.notifyAboutClearance(linesCleared)
+          scores.linesCleared(linesCleared)
         }
 
         board.drop(Tetromino.I_SHAPE)
@@ -157,7 +157,7 @@ describe("ScoringSystem", () => {
         const scores = new ScoringSystem()
 
         board.onClearLine = (linesCleared: number) => {
-          scores.notifyAboutClearance(linesCleared)
+          scores.linesCleared(linesCleared)
         }
 
         board.drop(Tetromino.I_SHAPE)
