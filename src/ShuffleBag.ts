@@ -6,4 +6,8 @@ export class ShuffleBag {
     constructor(shapes: Shape[]) {
         this.#shapes = shapes    
     }
+
+    next() {
+        return this.#shapes[0]
+    }
 }
