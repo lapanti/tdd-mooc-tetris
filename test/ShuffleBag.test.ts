@@ -52,4 +52,46 @@ describe("ShuffleBag", () => {
     expect(result.length).to.eq(4)
     expect(result).to.have.members([Tetromino.O_SHAPE, Tetromino.O_SHAPE, Tetromino.I_SHAPE, Tetromino.I_SHAPE])
   })
+
+  test('returns the items at "random"', () => {
+    const bag = new ShuffleBag([
+        Tetromino.O_SHAPE,
+        Tetromino.I_SHAPE,
+        Tetromino.I_SHAPE,
+        Tetromino.I_SHAPE,
+        Tetromino.O_SHAPE,
+        Tetromino.I_SHAPE,
+        Tetromino.O_SHAPE,
+        Tetromino.O_SHAPE,
+    ])
+
+    // As we can't actually test randomness, use a fake randomness function
+    let calledTimes = 0
+    bag.random = () => {
+        let toReturn: number
+        if (calledTimes % 2) {
+            toReturn = 1
+        } else {
+            toReturn = 0
+        }
+        calledTimes++
+        return toReturn
+    }
+
+    let result: Shape[] = []
+    for (let i = 0; i < 8; i++) {
+        result = result.concat(bag.next())
+    }
+
+    expect(result).to.have.ordered.members([
+        Tetromino.O_SHAPE,
+        Tetromino.O_SHAPE,
+        Tetromino.O_SHAPE,
+        Tetromino.O_SHAPE,
+        Tetromino.I_SHAPE,
+        Tetromino.I_SHAPE,
+        Tetromino.I_SHAPE,
+        Tetromino.I_SHAPE,
+    ])
+  })
 });
