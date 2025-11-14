@@ -36,7 +36,6 @@ class SimpleShape implements Shape {
 export class Tetromino implements Shape {
     static T_SHAPE = new Tetromino({
         currentOrientation: 0,
-        numberOfOrientations: 4,
         orientations: [
             new SimpleShape([
                 ['T','T','T'],
@@ -63,7 +62,6 @@ export class Tetromino implements Shape {
 
     static I_SHAPE = new Tetromino({
         currentOrientation: 0,
-        numberOfOrientations: 2,
         orientations: [
             new SimpleShape([
                 ['.','.','.','.'],
@@ -82,7 +80,6 @@ export class Tetromino implements Shape {
 
     static O_SHAPE = new Tetromino({
         currentOrientation: 0,
-        numberOfOrientations: 1,
         orientations: [
             new SimpleShape([
                 ['O','O'],
@@ -93,7 +90,6 @@ export class Tetromino implements Shape {
 
     static L_SHAPE = new Tetromino({
         currentOrientation: 0,
-        numberOfOrientations: 4,
         orientations: [
             new SimpleShape([
                 ['L','L','L'],
@@ -120,7 +116,6 @@ export class Tetromino implements Shape {
 
     static J_SHAPE = new Tetromino({
         currentOrientation: 0,
-        numberOfOrientations: 4,
         orientations: [
             new SimpleShape([
                 ['J','J','J'],
@@ -147,7 +142,6 @@ export class Tetromino implements Shape {
 
     static S_SHAPE = new Tetromino({
         currentOrientation: 0,
-        numberOfOrientations: 2,
         orientations: [
             new SimpleShape([
                 ['.','S','S'],
@@ -164,7 +158,6 @@ export class Tetromino implements Shape {
 
     static Z_SHAPE = new Tetromino({
         currentOrientation: 0,
-        numberOfOrientations: 2,
         orientations: [
             new SimpleShape([
                 ['Z','Z','.'],
@@ -184,7 +177,6 @@ export class Tetromino implements Shape {
 
     constructor({
         currentOrientation,
-        numberOfOrientations,
         orientations,
     }: { currentOrientation: number; numberOfOrientations?: number; orientations: Shape[] }) {
         orientations = orientations
