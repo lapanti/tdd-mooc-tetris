@@ -27,12 +27,29 @@ describe("ShuffleBag", () => {
         result = result.concat(bag.next())
     }
 
-    expect(result).to.contain(Tetromino.O_SHAPE)
-    expect(result).to.contain(Tetromino.I_SHAPE)
-    expect(result).to.contain(Tetromino.J_SHAPE)
-    expect(result).to.contain(Tetromino.L_SHAPE)
-    expect(result).to.contain(Tetromino.S_SHAPE)
-    expect(result).to.contain(Tetromino.T_SHAPE)
-    expect(result).to.contain(Tetromino.Z_SHAPE)
+    expect(result).to.have.members([
+        Tetromino.O_SHAPE,
+        Tetromino.I_SHAPE,
+        Tetromino.J_SHAPE,
+        Tetromino.L_SHAPE,
+        Tetromino.S_SHAPE,
+        Tetromino.T_SHAPE,
+        Tetromino.Z_SHAPE,
+    ])
+  })
+
+  test('starts over when it reaches the end', () => {
+    const bag = new ShuffleBag([
+        Tetromino.O_SHAPE,
+        Tetromino.I_SHAPE,
+    ])
+
+    let result: Shape[] = []
+    for (let i = 0; i < 4; i++) {
+        result = result.concat(bag.next())
+    }
+
+    expect(result.length).to.eq(4)
+    expect(result).to.have.members([Tetromino.O_SHAPE, Tetromino.O_SHAPE, Tetromino.I_SHAPE, Tetromino.I_SHAPE])
   })
 });

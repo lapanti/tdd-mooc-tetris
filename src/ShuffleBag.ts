@@ -11,7 +11,7 @@ export class ShuffleBag {
 
     next() {
         const next = this.#currentIndex
-        this.#currentIndex++
+        this.#currentIndex = (next + 1) % this.#shapes.length
         return this.#shapes[next]
     }
 }
