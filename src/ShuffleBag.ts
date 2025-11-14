@@ -5,13 +5,18 @@ export class ShuffleBag {
     #shapes: Shape[]
     
     constructor(shapes: Shape[]) {
-        this.#currentIndex = 0
+        this.#currentIndex = shapes.length - 1
         this.#shapes = shapes    
     }
 
     next() {
+        if (this.#currentIndex < 1) {
+            this.#currentIndex = this.#shapes.length - 1
+            return this.#shapes[0]
+        }
+
         const next = this.#currentIndex
-        this.#currentIndex = (next + 1) % this.#shapes.length
+        this.#currentIndex--
         return this.#shapes[next]
     }
 }
